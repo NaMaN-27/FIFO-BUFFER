@@ -1,0 +1,133 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2003 Xilinx, Inc.
+// All Right Reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 8.1i
+//  \   \         Application : ISE
+//  /   /         Filename : fifo_test.ant
+// /___/   /\     Timestamp : Mon Dec 20 22:30:51 2021
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: 
+//Design Name: fifo_test
+//Device: Xilinx
+//
+`timescale 1ns/1ps
+
+module fifo_test;
+    reg clk = 1'b0;
+    reg rst = 1'b0;
+    reg [7:0] buf_in = 8'b00010100;
+    wire [7:0] buf_out;
+    reg wr_en = 1'b0;
+    reg rd_en = 1'b0;
+    wire buf_empty;
+    wire buf_full;
+    wire [7:0] fifo_counter;
+
+    parameter PERIOD = 200;
+    parameter real DUTY_CYCLE = 0.5;
+    parameter OFFSET = 0;
+
+    initial    // Clock process for clk
+    begin
+        #OFFSET;
+        forever
+        begin
+            clk = 1'b0;
+            #(PERIOD-(PERIOD*DUTY_CYCLE)) clk = 1'b1;
+            #(PERIOD*DUTY_CYCLE);
+        end
+    end
+
+    fifo UUT (
+        .clk(clk),
+        .rst(rst),
+        .buf_in(buf_in),
+        .buf_out(buf_out),
+        .wr_en(wr_en),
+        .rd_en(rd_en),
+        .buf_empty(buf_empty),
+        .buf_full(buf_full),
+        .fifo_counter(fifo_counter));
+
+    integer TX_FILE = 0;
+    integer TX_ERROR = 0;
+    
+    initial begin    // Annotation process for clock clk
+        #0;
+        ANNOTATE_buf_out;
+        ANNOTATE_buf_empty;
+        ANNOTATE_buf_full;
+        ANNOTATE_fifo_counter;
+        #OFFSET;
+        forever begin
+            #115;
+            ANNOTATE_buf_out;
+            ANNOTATE_buf_empty;
+            ANNOTATE_buf_full;
+            ANNOTATE_fifo_counter;
+            #85;
+        end
+    end
+
+    initial begin  // Open the annotations file...
+        TX_FILE = $fopen("C:\\Users\\Ashish\\3D Objects\\DD_CP\\fifo\\fifo_test.ano");
+        #1200 // Final time:  1200 ns
+        $display("Success! Annotation Simulation Complete.");
+        $fdisplay(TX_FILE, "Total[%d]", TX_ERROR);
+        $fclose(TX_FILE);
+        $finish;
+    end
+
+    initial begin
+        // -------------  Current Time:  85ns
+        #85;
+        wr_en = 1'b1;
+        rd_en = 1'b1;
+        // -------------------------------------
+        // -------------  Current Time:  285ns
+        #200;
+        wr_en = 1'b0;
+        buf_in = 8'b00000000;
+        // -------------------------------------
+    end
+
+    task ANNOTATE_buf_out;
+        #0 begin
+            $fdisplay(TX_FILE, "Annotate[%d,buf_out,%b]", $time, buf_out);
+            $fflush(TX_FILE);
+            TX_ERROR = TX_ERROR + 1;
+        end
+    endtask
+
+    task ANNOTATE_buf_empty;
+        #0 begin
+            $fdisplay(TX_FILE, "Annotate[%d,buf_empty,%b]", $time, buf_empty);
+            $fflush(TX_FILE);
+            TX_ERROR = TX_ERROR + 1;
+        end
+    endtask
+
+    task ANNOTATE_buf_full;
+        #0 begin
+            $fdisplay(TX_FILE, "Annotate[%d,buf_full,%b]", $time, buf_full);
+            $fflush(TX_FILE);
+            TX_ERROR = TX_ERROR + 1;
+        end
+    endtask
+
+    task ANNOTATE_fifo_counter;
+        #0 begin
+            $fdisplay(TX_FILE, "Annotate[%d,fifo_counter,%b]", $time, fifo_counter);
+            $fflush(TX_FILE);
+            TX_ERROR = TX_ERROR + 1;
+        end
+    endtask
+
+endmodule
+

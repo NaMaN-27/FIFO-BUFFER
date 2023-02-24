@@ -1,0 +1,125 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2003 Xilinx, Inc.
+// All Right Reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 8.1i
+//  \   \         Application : ISE
+//  /   /         Filename : fifo_test.tfw
+// /___/   /\     Timestamp : Mon Dec 20 22:30:51 2021
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: 
+//Design Name: fifo_test
+//Device: Xilinx
+//
+`timescale 1ns/1ps
+
+module fifo_test;
+    reg clk = 1'b0;
+    reg rst = 1'b0;
+    reg [7:0] buf_in = 8'b00010100;
+    wire [7:0] buf_out;
+    reg wr_en = 1'b0;
+    reg rd_en = 1'b0;
+    wire buf_empty;
+    wire buf_full;
+    wire [7:0] fifo_counter;
+
+    parameter PERIOD = 200;
+    parameter real DUTY_CYCLE = 0.5;
+    parameter OFFSET = 0;
+
+    initial    // Clock process for clk
+    begin
+        #OFFSET;
+        forever
+        begin
+            clk = 1'b0;
+            #(PERIOD-(PERIOD*DUTY_CYCLE)) clk = 1'b1;
+            #(PERIOD*DUTY_CYCLE);
+        end
+    end
+
+    fifo UUT (
+        .clk(clk),
+        .rst(rst),
+        .buf_in(buf_in),
+        .buf_out(buf_out),
+        .wr_en(wr_en),
+        .rd_en(rd_en),
+        .buf_empty(buf_empty),
+        .buf_full(buf_full),
+        .fifo_counter(fifo_counter));
+
+        integer TX_ERROR = 0;
+        
+        initial begin  // Open the results file...
+            #1200 // Final time:  1200 ns
+            if (TX_ERROR == 0) begin
+                $display("No errors or warnings.");
+                end else begin
+                    $display("%d errors found in simulation.", TX_ERROR);
+                    end
+                    $stop;
+                end
+
+                initial begin
+                    // -------------  Current Time:  85ns
+                    #85;
+                    wr_en = 1'b1;
+                    rd_en = 1'b1;
+                    // -------------------------------------
+                    // -------------  Current Time:  285ns
+                    #200;
+                    wr_en = 1'b0;
+                    buf_in = 8'b00000000;
+                    // -------------------------------------
+                end
+
+                task CHECK_buf_out;
+                    input [7:0] NEXT_buf_out;
+
+                    #0 begin
+                        if (NEXT_buf_out !== buf_out) begin
+                            $display("Error at time=%dns buf_out=%b, expected=%b", $time, buf_out, NEXT_buf_out);
+                            TX_ERROR = TX_ERROR + 1;
+                        end
+                    end
+                endtask
+                task CHECK_buf_empty;
+                    input NEXT_buf_empty;
+
+                    #0 begin
+                        if (NEXT_buf_empty !== buf_empty) begin
+                            $display("Error at time=%dns buf_empty=%b, expected=%b", $time, buf_empty, NEXT_buf_empty);
+                            TX_ERROR = TX_ERROR + 1;
+                        end
+                    end
+                endtask
+                task CHECK_buf_full;
+                    input NEXT_buf_full;
+
+                    #0 begin
+                        if (NEXT_buf_full !== buf_full) begin
+                            $display("Error at time=%dns buf_full=%b, expected=%b", $time, buf_full, NEXT_buf_full);
+                            TX_ERROR = TX_ERROR + 1;
+                        end
+                    end
+                endtask
+                task CHECK_fifo_counter;
+                    input [7:0] NEXT_fifo_counter;
+
+                    #0 begin
+                        if (NEXT_fifo_counter !== fifo_counter) begin
+                            $display("Error at time=%dns fifo_counter=%b, expected=%b", $time, fifo_counter, NEXT_fifo_counter);
+                            TX_ERROR = TX_ERROR + 1;
+                        end
+                    end
+                endtask
+
+            endmodule
+

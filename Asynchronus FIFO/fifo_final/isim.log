@@ -1,0 +1,38 @@
+ command line:
+   ./fifo_test_v_isim_beh.exe
+     -intstyle  ise
+     -ipchost  localhost
+     -ipcport  50034
+
+Thu Dec 23 10:04:19 2021
+
+Total Line Count = 124
+
+ Elaboration time 0.015625 sec.
+
+ Estimate current memory usage 73.8181 Meg. 
+
+ Total signals 29
+ Total nets 49
+ Total signal drivers 17
+ Total blocks 3
+ Total primitive blocks 2
+ Total processes 26
+ntrace select -o on -n /fifo_test_v/fifo_counter 
+ntrace select -o on -n /fifo_test_v/of_check 
+ntrace select -o on -n /fifo_test_v/buf_out 
+ntrace select -o on -n /fifo_test_v/buf_full 
+ntrace select -o on -n /fifo_test_v/thresh_out 
+ntrace select -o on -n /fifo_test_v/uf_check 
+ntrace select -o on -n /fifo_test_v/buf_empty 
+ntrace select -o on -n /fifo_test_v/thresh_in 
+ntrace select -o on -n /fifo_test_v/buf_in 
+ntrace select -o on -n /fifo_test_v/rst 
+ntrace select -o on -n /fifo_test_v/rd_en 
+ntrace select -o on -n /fifo_test_v/clk_r 
+ntrace select -o on -n /fifo_test_v/clk_w 
+ntrace select -o on -n /fifo_test_v/wr_en 
+ntrace start 
+run 1000 ns 
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.

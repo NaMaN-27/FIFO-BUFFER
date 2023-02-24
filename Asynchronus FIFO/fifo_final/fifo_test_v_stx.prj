@@ -1,0 +1,3 @@
+verilog isim_temp "fifo.v"
+verilog isim_temp "fifo_test.v"
+verilog isim_temp "D:/xilinx/verilog/src/glbl.v"

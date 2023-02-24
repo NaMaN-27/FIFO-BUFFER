@@ -1,0 +1,5 @@
+xst -ise "C:/Users/Ashish/3D Objects/DD_CP/fifo/fifo" -intstyle ise -ifn fifo.xst -ofn fifo.syr
+netgen -ise "C:/Users/Ashish/3D Objects/DD_CP/fifo/fifo" -intstyle ise -w -dir netgen/synthesis -ofmt verilog -sim fifo.ngc fifo_synthesis.v
+xst -ise "C:/Users/Ashish/3D Objects/DD_CP/fifo/fifo" -intstyle ise -ifn fifo.xst -ofn fifo.syr
+xst -ise "C:/Users/Ashish/3D Objects/DD_CP/fifo/fifo" -intstyle ise -ifn fifo.xst -ofn fifo.syr
+netgen -ise "C:/Users/Ashish/3D Objects/DD_CP/fifo/fifo" -intstyle ise -w -dir netgen/synthesis -ofmt verilog -sim fifo.ngc fifo_synthesis.v

@@ -1,0 +1,3 @@
+MODULE fifo_test
+SUBMODULE fifo
+INSTANCE UUT

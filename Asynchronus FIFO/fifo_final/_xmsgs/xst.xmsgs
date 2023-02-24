@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="905" delta="unknown" >&quot;<arg fmt="%s" index="1">fifo.v</arg>&quot; line <arg fmt="%d" index="2">43</arg>: The signals &lt;<arg fmt="%s" index="3">wr_en, rd_en, thresh_in</arg>&gt; are missing in the sensitivity list of always block.
+</msg>
+
+<msg type="info" file="Xst" num="1433" delta="unknown" >Contents of array &lt;<arg fmt="%s" index="1">buf_mem</arg>&gt; may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+</msg>
+
+<msg type="info" file="Xst" num="1304" delta="unknown" >Contents of register &lt;<arg fmt="%s" index="1">rd_ptr</arg>&gt; in unit &lt;<arg fmt="%s" index="2">fifo</arg>&gt; never changes during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="738" delta="unknown" >HDL ADVISOR - <arg fmt="%d" index="1">512</arg> flip-flops were inferred for signal &lt;<arg fmt="%s" index="2">buf_mem</arg>&gt;. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+</msg>
+
+<msg type="warning" file="Xst" num="1426" delta="unknown" >The value init of the FF/Latch <arg fmt="%s" index="1">rd_ptr_0</arg> hinder the constant cleaning in the block <arg fmt="%s" index="2">fifo</arg>.
+You should achieve better results by setting this init to <arg fmt="%i" index="3">1</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch  &lt;<arg fmt="%s" index="1">rd_ptr_1</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch  &lt;<arg fmt="%s" index="1">rd_ptr_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch  &lt;<arg fmt="%s" index="1">rd_ptr_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch  &lt;<arg fmt="%s" index="1">rd_ptr_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch  &lt;<arg fmt="%s" index="1">rd_ptr_5</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1291" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">rd_ptr_6</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">fifo</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1291" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">wr_ptr_6</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">fifo</arg>&gt;.
+</msg>
+
+<msg type="error" file="Xst" num="528" delta="unknown" >Multi-source in Unit &lt;<arg fmt="%s" index="1">fifo</arg>&gt; on signal &lt;<arg fmt="%s" index="2">rd_ptr&lt;5&gt;</arg>&gt;
+</msg>
+
+<msg type="error" file="Xst" num="528" delta="unknown" >Multi-source in Unit &lt;<arg fmt="%s" index="1">fifo</arg>&gt; on signal &lt;<arg fmt="%s" index="2">rd_ptr&lt;0&gt;</arg>&gt;
+</msg>
+
+</messages>

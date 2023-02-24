@@ -1,0 +1,8 @@
+V3 7
+FL C:/Users/NAMAN/Desktop/fifo_final/fifo_final/fifo_test.v 2021/12/23.09:51:42 I.24
+MO work/fifo_test_v     FL C:/Users/NAMAN/Desktop/fifo_final/fifo_final/fifo_test.v \
+      MI fifo
+FL C:/Users/NAMAN/Desktop/fifo_final/fifo_final/fifo.v 2021/12/23.09:51:46 I.24
+MO work/fifo            FL C:/Users/NAMAN/Desktop/fifo_final/fifo_final/fifo.v
+FL $XILINX/verilog/src/glbl.v 2005/11/16.16:04:44 I.24
+MO work/glbl            FL $XILINX/verilog/src/glbl.v
